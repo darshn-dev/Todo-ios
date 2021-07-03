@@ -4,44 +4,50 @@
 //
 //  Created by Darshan on 30/06/21.
 //
+//Available Data storage option in iOS
+//UserDefaults
+//Codable
+//KeyChain
+//SQLite - alot of data
+//CoreData - already using SQLite, use it as wrapper
+//Realm -- easy to implement
 
 import UIKit
 
 class TodoListController: UITableViewController {
     
     var itemArray = [Item]()
-    
-    
+    //store value in key value pair, UserDefaults
     let dafaults = UserDefaults.standard
     
+    //store data in the file as list, Codable
+    //flash freeze custom object
+    //Not good, becoz it loads while plist even if i want to use single value.
+    //dont use if data is huge
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //print(dataFilePath)
+//        var newItem  = Item()
+//        newItem.title = "Go to market"
+//        self.itemArray.append(newItem)
+//
+//        newItem  = Item()
+//        newItem.title = "Buy book"
+//        self.itemArray.append(newItem)
+//
+//        newItem  = Item()
+//        newItem.title = "Read book"
+//        self.itemArray.append(newItem)
+//
+//        newItem  = Item()
+//        newItem.title = "sleep"
+//        self.itemArray.append(newItem)
         
-        
-        
-        print(dataFilePath)
-        
-        var newItem  = Item()
-        newItem.title = "Go to market"
-        self.itemArray.append(newItem)
-        
-        newItem  = Item()
-        newItem.title = "Buy book"
-        self.itemArray.append(newItem)
-        
-        newItem  = Item()
-        newItem.title = "Read book"
-        self.itemArray.append(newItem)
-        
-        newItem  = Item()
-        newItem.title = "sleep"
-        self.itemArray.append(newItem)
-        
-        if let items = self.dafaults.array(forKey: "TodoListArray") as? [Item]{
-            self.itemArray = items
-        }
+//        if let items = self.dafaults.array(forKey: "TodoListArray") as? [Item]{
+//            self.itemArray = items
+//        }
         
         
         loadItems()
